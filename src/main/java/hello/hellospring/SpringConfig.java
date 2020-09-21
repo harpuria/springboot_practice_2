@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.*;
 import hello.hellospring.service.MemberService;
 import org.springframework.context.annotation.Bean;
@@ -35,4 +36,14 @@ public class SpringConfig {
         //return new JdbcTemplateMemberRepository(dataSource);
         return new JpaMemberRepository(em);
     }
+
+    /*
+    AOP 빈은 이렇게 직접 등록하는 것을 권장한다. 단, 이 때 순환참조가 발생하는데 SpringConfig 를 AOP 대상에서 제외시켜주면 된다.
+    @Around("execution(* hello.hellospring..*(..)) && !target(hello.hellospring.SpringConfig)")
+
+    @Bean
+    public TimeTraceAop timeTraceAop(){
+        return new TimeTraceAop();
+    }
+     */
 }

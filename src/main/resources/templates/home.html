@@ -13,7 +13,44 @@
                 <a href="/members/new">회원 가입</a>
                 <a href="/members">회원 목록</a>
             </p>
-            <p th:text="'안녕하세요? ' + ${name} + '님'">하하 병신</p>
+            <p th:text="'안녕하세요? ' + ${name} + '님'">하하핳</p>
+
+            <!-- map 에 있는 아이템 꺼내기 -->
+            <table border="1">
+                <thead>
+                    <th>나이</th>
+                    <th>이름</th>
+                    <th>주소</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:text="${map.age}"></td>
+                        <td th:text="${map.name}"></td>
+                        <td th:text="${map.addr}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- list 에 있는 map 순회하면서 꺼내기 -->
+            <table border="1">
+                <thead>
+                    <th>인덱스</th>
+                    <th>카운트</th>
+                    <th>나이</th>
+                    <th>이름</th>
+                    <th>주소</th>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${listMap}">
+                        <td th:text="${itemStat.index}"></td> <!-- 아이템Stat.index 는 0부터 시작하는 인덱스 번호를 반환 한다 -->
+                        <td th:text="${itemStat.count}"></td> <!-- 아이템Stat.index 는 1부터 시작하는 번호를 반환 한다 -->
+                        <td th:text="${item.age}"></td>
+                        <td th:text="${item.name}"></td>
+                        <td th:text="${item.addr}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </body>
